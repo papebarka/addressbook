@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+import addressServices from './services/addresses'
 import reactLogo from './assets/react.svg'
 import AddressWrapper from './components/AddressWrapper'
 import AddressForm from './components/AddressForm'
@@ -23,8 +23,8 @@ const App = (props) => {
 
   const getAddresses = () => {
     console.log('Grabbing data')
-    axios
-    .get('http://localhost:3001/addresses')
+    addressServices
+    .getAll()
     .then(response => {
       setAddresses(response.data)
       console.log(addresses)
@@ -48,8 +48,8 @@ const App = (props) => {
     //console.log(addresses)
     
     setNewAddress({...newAddress, id: addresses.length + 1})
-    axios
-      .post('http://localhost:3001/addresses', newAddress)
+    addressServices
+      .create(newAddress)
       .then(response => {
         console.log(response)
         setAddresses([...addresses, response.data])
