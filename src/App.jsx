@@ -55,6 +55,7 @@ const App = (props) => {
         setAddresses([...addresses, address])
         setNewAddress({ id: addresses.length + 1, name: '', phone: '', address: ''})
       })
+      .cath(error => {console.log("An error occured while creating the address.")})
 
   }
 
