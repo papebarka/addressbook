@@ -25,8 +25,8 @@ const App = (props) => {
     console.log('Grabbing data')
     addressServices
     .getAll()
-    .then(response => {
-      setAddresses(response.data)
+    .then(addresses => {
+      setAddresses(addresses)
       console.log(addresses)
     })
     console.log(addresses)
@@ -50,9 +50,9 @@ const App = (props) => {
     setNewAddress({...newAddress, id: addresses.length + 1})
     addressServices
       .create(newAddress)
-      .then(response => {
-        console.log(response)
-        setAddresses([...addresses, response.data])
+      .then(address => {
+        console.log(address)
+        setAddresses([...addresses, address])
         setNewAddress({ id: addresses.length + 1, name: '', phone: '', address: ''})
       })
 

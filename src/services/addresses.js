@@ -3,15 +3,18 @@ import axios from 'axios'
 const baseUrl = 'http://localhost:3001/addresses'
 
 const getAll = () => {
-    return axios.get(baseUrl)
+    const request = axios.get(baseUrl)
+    return request.then(response => response.data)
 }
 
 const create = newAddress => {
-    return axios.post(baseUrl, newAddress)
+    const request = axios.post(baseUrl, newAddress)
+    return request.then(response => response.data)
 }
 
 const update = (id, newAddress) => {
-    return axios.put(`${baseUrl}/${id}`, newAddress)
+    const request = axios.put(`${baseUrl}/${id}`, newAddress)
+    return request.then(response => response.data)
 }
 export default {
     getAll: getAll,
