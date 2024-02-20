@@ -19,7 +19,7 @@ const App = (props) => {
   const name = "Tech User"
 
   const [addresses, setAddresses] = useState([])
-  const [newAddress, setNewAddress] = useState({ id: addresses.length + 1, name: '', phone: '', address: ''})
+  const [newAddress, setNewAddress] = useState({ name: '', phone: '', address: ''})
 
   const getAddresses = () => {
     console.log('Grabbing data')
@@ -43,10 +43,19 @@ const App = (props) => {
   const addAddress = (event) => {
     event.preventDefault()
     console.log(newAddress)
-    setAddresses([...addresses, newAddress])
-    console.log({...addresses})
-    console.log(addresses)
-    setNewAddress({ id: addresses.length + 1, name: '', phone: '', address: ''})
+    //setAddresses([...addresses, newAddress])
+    //console.log({...addresses})
+    //console.log(addresses)
+    
+    setNewAddress({...newAddress, id: addresses.length + 1})
+    axios
+      .post('http://localhost:3001/addresses', newAddress)
+      .then(response => {
+        console.log(response)
+        setAddresses([...addresses, response.data])
+        setNewAddress({ id: addresses.length + 1, name: '', phone: '', address: ''})
+      })
+
   }
 
   return(
