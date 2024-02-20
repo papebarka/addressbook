@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import AddressWrapper from './components/AddressWrapper'
+import AddressForm from './components/AddressForm'
 import './App.css'
 
 
@@ -12,38 +13,27 @@ const Title = (props) => {
   )
 }
 
-const App = () => {
+
+const App = (props) => {
   const name = "Tech User"
 
-  const addresses = [
-    {
-      id: 1,
-      name: "Ousmane Coulibaly",
-      phone: "+223 85 74 02 02",
-      address: "Bamako"
-    },
+  const [addresses, setAddresses] = useState(props.addresses)
+  const [newAddress, setNewAddress] = useState({ id: addresses.length + 1, name: '', phone: '', address: ''})
 
-    {
-      id: 2,
-      name: "John Chris",
-      phone: "+1 745 20 74 2024",
-      address: "NYC"
-    },
+  const handleChange = (event) => {
+    const {name, value} = event.target
+    setNewAddress({...newAddress, [name]: value})
+    console.log(newAddress)
+  }
 
-    {
-      id: 3,
-      name: "Adam Maarouf",
-      phone: "+33 857 402 17 02",
-      address: "Paris"
-    },
-
-    {
-      id: 4,
-      name: "Jack Spencer",
-      phone: "+1 474 558 57 40 202",
-      address: "NJ"
-    }
-  ]
+  const addAddress = (event) => {
+    event.preventDefault()
+    console.log(newAddress)
+    setAddresses([...addresses, newAddress])
+    console.log({...addresses})
+    console.log(addresses)
+    setNewAddress({ id: addresses.length + 1, name: '', phone: '', address: ''})
+  }
 
   return(
 
@@ -51,6 +41,7 @@ const App = () => {
       <Title name="Address Book"/>
       <p>Hello {name}</p>
       <AddressWrapper addresses={addresses}/>
+      <AddressForm action={addAddress} change={handleChange} fields={newAddress} />
     </div>
   )
 
