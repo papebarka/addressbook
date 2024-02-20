@@ -21,7 +21,7 @@ const App = (props) => {
   const [addresses, setAddresses] = useState([])
   const [newAddress, setNewAddress] = useState({ id: addresses.length + 1, name: '', phone: '', address: ''})
 
-  useEffect( () => {
+  const getAddresses = () => {
     console.log('Grabbing data')
     axios
     .get('http://localhost:3001/addresses')
@@ -30,7 +30,9 @@ const App = (props) => {
       console.log(addresses)
     })
     console.log(addresses)
-  }, [])
+  }
+
+  useEffect( getAddresses, [])
 
   const handleChange = (event) => {
     const {name, value} = event.target
