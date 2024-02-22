@@ -2,10 +2,8 @@ const Address = ({name, phone, address}) => {
     return(
       <div>
         <h2>{name}</h2>
-        <p>
-          T: {phone}<br/>
-          A: {address}
-        </p>
+        <p>T: {phone}</p>
+        <p>A: {address}</p>
       </div>
     )
   }
