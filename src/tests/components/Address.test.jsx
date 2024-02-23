@@ -7,14 +7,14 @@ describe(Address, () => {
     it('Renders content', () => {
         const {name, phone, address} = {name: "Adam Sen", phone: "223458965", address: "Mali" }
         console.log(name)
-        const {container} = render(<Address name={name} phone={phone} address={address} />)
-    
-        screen.debug()
+        render(<Address name={name} phone={phone} address={address} />)
         
         const nameElt = screen.getByText("Adam Sen")
         const phoneElt = screen.getByText("T: 223458965")
         const addressElt = screen.getByText("A: Mali")
     
+        screen.debug(nameElt)
+
         expect(nameElt).toBeDefined()
         expect(phoneElt).toBeDefined()
         expect(addressElt).toBeDefined()
