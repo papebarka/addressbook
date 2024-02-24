@@ -6,6 +6,8 @@ import AddressForm from './components/AddressForm'
 import './App.css'
 
 
+let addAddress;
+
 const Title = (props) => {
   return(
     <div>
@@ -40,7 +42,7 @@ const App = (props) => {
     console.log(newAddress)
   }
 
-  const addAddress = (event) => {
+  addAddress = (event) => {
     event.preventDefault()
     console.log(newAddress)
     //setAddresses([...addresses, newAddress])
@@ -55,7 +57,7 @@ const App = (props) => {
         setAddresses([...addresses, address])
         setNewAddress({ id: addresses.length + 1, name: '', phone: '', address: ''})
       })
-      .cath(error => {console.log("An error occured while creating the address.")})
+      .catch(error => {console.log("An error occured while creating the address.")})
 
   }
 
@@ -71,4 +73,4 @@ const App = (props) => {
 
 }
 
-export default App
+export { App as default, addAddress }
